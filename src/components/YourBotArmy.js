@@ -1,18 +1,28 @@
 import React from "react";
-import BotCard from "./BotCard"
+import BotCard from "./BotCard";
 
-function YourBotArmy({army,handleDelete,handleRemove}) {
-  //your bot army code here...
+function YourBotArmy({ yourBots, setYourBots, deleteBot }) {
+  function removeBotFromArmy(bot) {
+    const newArmy = yourBots.filter((b) => b.id !== bot.id);
+    setYourBots(newArmy);
+  }
 
   return (
     <div className="ui segment inverted olive bot-army">
       <div className="ui five column grid">
         <div className="row bot-army-row">
-          {
-            army.map((bot,key)=>{
-              return <BotCard bot={bot} key={key} handleDelete={handleDelete} handleAdd={handleRemove}/>
-            })
-          }
+          {yourBots.map((bot) => {
+            return (
+              <BotCard
+                bot={bot}
+                key={bot.id}
+                removeBotFromArmy={removeBotFromArmy}
+                deleteBot={deleteBot}
+                isInArmy={true}
+              />
+            );
+          })}
+          Your Bot Army
         </div>
       </div>
     </div>
