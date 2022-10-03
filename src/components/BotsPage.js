@@ -7,7 +7,7 @@ function BotsPage() {
   const [yourBots, setYourBots] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:8002/bots")
+    fetch(" http://localhost:3000/bots")
       .then((response) => response.json())
       .then((data) => setBots(data))
       .catch((error) => console.log(error));
@@ -22,7 +22,7 @@ function BotsPage() {
     const updateYourBots = yourBots.filter((b) => b.id !== bot.id);
     const updateBots = bots.filter((b) => b.id !== bot.id);
 
-    fetch(`http://localhost:8002/bots/${bot.id}`, {
+    fetch(` http://localhost:3000/bots${bot.id}`, {
       method: "DELETE",
     }).then(() => {
       setYourBots(updateYourBots)
